@@ -1,0 +1,16 @@
+body {
+    background: linear-gradient(0deg, rgba(136, 136, 136, 1) 0%, rgba(128, 128, 128, 1) 47%, rgba(0, 0, 0, 1) 100%) !important;
+}
+
+#avaliacao-form input:not(:checked)~label:hover,
+#avaliacao-form input:not(:checked)~label:hover~label {
+    color: #fd4 !important;
+}
+
+#avaliacao-form input:checked~label {
+    color: #fd4 !important;
+}
+
+#card {
+    box-shadow: -15px 15px 5px 5px #333 !important;
+}
