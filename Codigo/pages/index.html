@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+
+    <!-- NavBar -->
+    <nav class="bg-white h-20 flex justify-between items-center">
+        <div class="flex gap-5 text-5xl text-yellow-400 ml-5"><i class="fa-solid fa-map-location-dot"></i>
+            <h1 class="font-bold">VS</h1>
+        </div>
+        <div class="hidden md:flex mr-5">
+            <a href="index.html" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium">Home</a>
+            <a href="#" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium">Favoritos</a>
+            <a href="login.html" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium">Login</a>
+        </div>
+        <div class="bg-transparent p-4">
+            <p class="text-black font-bold text-lg">Nível: <span id="level">1</span></p>
+
+            <div class="w-32 md:w-64 bg-gray-300 rounded-full">
+                <div id="progress-bar" class="bg-yellow-400 p-2 leading-none rounded-full" style="width: 45%"></div>
+            </div>
+        </div>
+        <div class="mr-5 flex md:hidden">
+            <button id="btn-menu" type="button"
+                class="inline-flex items-center justify-center p-2 rounded-md text-black text-lg hover:bg-yellow-200 focus:outline-none transition duration-150 ease-in-out">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- NavBar Responsiva -->
+    <div id="menu" class="hidden md:hidden">
+        <div class="px-2 pt-2 pd-3 sm:px-3 flex flex-col">
+            <a href="index.html" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Home</a>
+            <a href="#" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Favoritos</a>
+            <a href="login.html" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Login</a>
+        </div>
+    </div>
+
+    <!-- Section -->
+    <section class="bg-gray-100 py-12">
+        <div class="mx-auto flex flex-col items-center justify-center">
+            <div class="md:w-1/2 p-6 text-center">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4">Conectando você aos melhores lugares!</h2>
+                <div class="mb-4">
+                    <hr class="border-b-2 border-yellow-400 w-32 rounded-full mx-auto">
+                </div>
+                <p class="text-gray-600 mb-4">Nosso objetivo é ajudá-lo a descobrir e explorar os locais mais incríveis
+                    da sua cidade e além.</p>
+                <a href="cadastro.html"
+                    class="bg-yellow-400 p-2 rounded-lg font-semibold text-white hover:text-black hover:bg-yellow-200 transition duration-300 ease-in-out">Cadastre-se</a>
+            </div>
+
+            <div class="md:w-1/2 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="flex flex-col bg-white p-6 rounded-lg shadow-md flex items-center text-center">
+                    <i class="fas fa-palette text-4xl text-yellow-400"></i>
+                    <div class="ml-4">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-2">Personalização Sem Limites</h2>
+                        <p class="text-gray-600">Nosso site oferece sugestões que se ajustam perfeitamente ao seu gosto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col bg-white p-6 rounded-lg shadow-md flex items-center text-center">
+                    <i class="fas fa-coins text-4xl text-yellow-400"></i>
+                    <div class="ml-4">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-2">Descubra Tesouros Locais</h2>
+                        <p class="text-gray-600">Nossa comunidade compartilha pérolas escondidas que transformarão suas
+                            saídas em aventuras memoráveis.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col bg-white p-6 rounded-lg shadow-md flex items-center text-center">
+                    <i class="fas fa-check text-4xl text-yellow-400"></i>
+                    <div class="ml-4">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-2">Recomendações Verificadas</h2>
+                        <p class="text-gray-600">Nossa equipe de especialistas e uma comunidade dedicada trabalham
+                            juntos para avaliar e revisar todas as recomendações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recomendados -->
+    <div class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-2">Lugares Recomendados</h2>
+            <div class="mb-4">
+                <hr class="border-b-2 border-yellow-400 w-32 rounded-full">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="advisor">
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Search -->
+    <div class="m-10 text-gray-600 bg-white w-64 rounded-full border border-black">
+        <input type="search" name="serch" placeholder="Search"
+            class="bg-transparent h-10 px-3 pr-10 rounded-full text-sm focus:outline-none">
+        <button type="submit" class="hover:bg-gray-200 px-2 py-1 rounded-full">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+
+    <!-- Cards -->
+    <div id="cards" class="grid grid-cols-auto md:grid-cols-4 gap-8 m-5">
+    </div>
+
+    <!-- Foooter -->
+    <footer class="bg-gray-100">
+        <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
+            <nav class="flex flex-wrap justify-center -mx-5 -my-2">
+                <div class="px-5 py-2">
+                    <a href="#" class="text-lg font-bold leading-6 textblack hover:text-yellow-400">
+                        About
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-lg font-bold leading-6 textblack hover:text-yellow-400">
+                        Blog
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-lg font-bold leading-6 textblack hover:text-yellow-400">
+                        Team
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-lg font-bold leading-6 textblack hover:text-yellow-400">
+                        Contact
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#" class="text-lg font-bold leading-6 textblack hover:text-yellow-400">
+                        Terms
+                    </a>
+                </div>
+            </nav>
+            <div class="flex justify-center mt-8 space-x-6 text-3xl">
+                <a href="#" class="text-black hover:text-yellow-400">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="#" class="text-black hover:text-yellow-400">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#" class="text-black hover:text-yellow-400">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="#" class="text-black hover:text-yellow-400">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+            <p class="mt-8 text-lg font-bold leading-6 text-center text-black">
+                © 2023 VamosSair, Inc. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+</body>
+
+</html>
