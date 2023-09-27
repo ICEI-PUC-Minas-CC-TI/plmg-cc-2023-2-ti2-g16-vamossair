@@ -44,22 +44,98 @@
             <a href="login.html" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Login</a>
         </div>
     </div>
+    
+    <style>
+        /* Estilos CSS personalizados podem ser adicionados aqui */
+        .slider-container {
+            width: 100%;
+            height: 39vh;
+            position: relative;
+            overflow: hidden;
+        }
 
+        .slider {
+            display: flex;
+            width: 100%;
+            height:100%;
+            transition: transform 0.5s ease;
+        }
+
+        .slider-item {
+            flex: 0 0 100%;
+            max-width: 100%;
+            height: 100%;
+        }
+
+        /* Animação da transição */
+        .slider-item-enter {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+
+        .slider-item-enter-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .slider-item-exit {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slider-item-exit-active {
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        /* Estilo para a seção */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 40vh; /* Defina a altura desejada */
+        }
+
+        
+    </style>
     <!-- Section -->
-    <section class="bg-gray-100 py-12">
-        <div class="mx-auto flex flex-col items-center justify-center">
-            <div class="md:w-1/2 p-6 text-center">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-4">Conectando você aos melhores lugares!</h2>
-                <div class="mb-4">
-                    <hr class="border-b-2 border-yellow-400 w-32 rounded-full mx-auto">
+    <section class="hero-section">
+        <section class="relative bg-gray-100 py-12">
+            <!-- Imagem de plano de fundo -->
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="slider-container">
+                    <transition-group name="slider-item" tag="div" class="slider">
+                        <div class="slider-item">
+                            <img src="https://blog.vprimoveis.com.br/wp-content/uploads/2023/03/melhores-baladas-bh.jpg" alt="Imagem 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="slider-item">
+                            <img src="https://blog.vprimoveis.com.br/wp-content/uploads/2023/03/melhores-baladas-bh.jpg" alt="Imagem 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="slider-item">
+                            <img src="https://blog.vprimoveis.com.br/wp-content/uploads/2023/03/melhores-baladas-bh.jpg" alt="Imagem 3" class="w-full h-full object-cover">
+                        </div>
+                    </transition-group>
                 </div>
-                <p class="text-gray-600 mb-4">Nosso objetivo é ajudá-lo a descobrir e explorar os locais mais incríveis
-                    da sua cidade e além.</p>
-                <a href="cadastro.html"
-                    class="bg-yellow-400 p-2 rounded-lg font-semibold text-white hover:text-black hover:bg-yellow-200 transition duration-300 ease-in-out">Cadastre-se</a>
             </div>
-
-            <div class="md:w-1/2 grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+            <div class="mx-auto flex flex-col items-center justify-center relative">
+                <div class="md:w-1/2 p-6 text-center  rounded-lg shadow-lg">
+                    <h2 class="text-3xl font-semibold text-white mb-4">Conectando você aos melhores lugares!</h2>
+                    <div class="mb-4">                       
+                        <hr class="border-b-2 border-yellow-400 w-32 rounded-full mx-auto">
+                    </div>
+                    
+                    <p class="text-white mb-4">Nosso objetivo é ajudá-lo a descobrir e explorar os locais mais incríveis da sua cidade e além.</p>
+                    <a href="cadastro.html"
+                        class="bg-yellow-400 p-2 rounded-lg font-semibold text-white hover:text-black hover:bg-yellow-200 transition duration-300 ease-in-out">Cadastre-se</a>
+                </div>
+            </div>
+            
+        </section>
+        </section>
+        
+            <div class="mb-5 items-center :w-1/2 grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="flex flex-col bg-white p-6 rounded-lg shadow-md flex items-center text-center">
                     <i class="fas fa-palette text-4xl text-yellow-400"></i>
                     <div class="ml-4">
@@ -84,12 +160,16 @@
                         <h2 class="text-lg font-semibold text-gray-800 mb-2">Recomendações Verificadas</h2>
                         <p class="text-gray-600">Nossa equipe de especialistas e uma comunidade dedicada trabalham
                             juntos para avaliar e revisar todas as recomendações.</p>
-                    </div>
-                </div>
+                    </div>  
+                </div>  
             </div>
-        </div>
+          
+          
+       
+    </div>
     </section>
-
+   
+   
     <!-- Recomendados -->
     <div class="bg-gray-100 py-16">
         <div class="container mx-auto px-4">
