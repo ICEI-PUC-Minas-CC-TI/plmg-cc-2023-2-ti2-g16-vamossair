@@ -1,0 +1,9 @@
+#avaliacao-form input:not(:checked)~label:hover,
+#avaliacao-form input:not(:checked)~label:hover~label {
+    color: #fd4 !important;
+}
+
+#avaliacao-form input:checked~label {
+    color: #fd4 !important;
+}
+

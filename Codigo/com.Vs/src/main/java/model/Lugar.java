@@ -4,6 +4,7 @@ public class Lugar {
    // Atributos
    private String nome;
    private String descricao;
+   private String categoria;
    private String cidade;
    private String bairro;
    private String rua;
@@ -11,11 +12,12 @@ public class Lugar {
    
    // Construtores
    public Lugar() {
-	   this("","","","","",0);
+	   this("","","","","","",0);
    }
    
-   public Lugar(String nome, String descricao, String cidade, String bairro, String rua, int complemento) {
+   public Lugar(String nome, String categoria, String descricao, String cidade, String bairro, String rua, int complemento) {
 	   setNome(nome);
+      setCategoria(categoria);
 	   setDescricao(descricao);
 	   setCidade(cidade);
 	   setBairro(bairro);
@@ -26,6 +28,10 @@ public class Lugar {
    // Getters
    public String getNome() {
 	   return this.nome;
+   }
+
+   public String getCategoria() {
+	   return this.categoria;
    }
    
    public String getDescricao() {
@@ -51,6 +57,10 @@ public class Lugar {
    // Setters
    public void setNome(String nome) {
 	   this.nome = nome;
+   }
+
+   public void setCategoria(String categoria){
+      this.categoria = categoria;
    }
    
    public void setDescricao(String descricao) {

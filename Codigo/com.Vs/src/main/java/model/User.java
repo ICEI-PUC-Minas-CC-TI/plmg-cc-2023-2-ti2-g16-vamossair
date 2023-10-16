@@ -2,22 +2,32 @@ package model;
 
 public class User {
   // Atributos
+  private int id;
   private String nome;
   private String email;
   private String senha;
+  //private Nivel nivel;
+ 
   
   // Construtores
-  public User() {
-	  this("","","");
-  }
-  
   public User(String nome, String email, String senha) {
+	  setNome(nome);
+	  setEmail(email);
+	  setSenha(senha);
+  }
+
+  public User(int id,String nome, String email, String senha) {
+	  setId(id);
 	  setNome(nome);
 	  setEmail(email);
 	  setSenha(senha);
   }
   
   // Getters
+  public int getId() {
+	  return this.id;
+  }
+  
   public String getNome() {
 	  return this.nome;
   }
@@ -31,6 +41,10 @@ public class User {
   }
   
   // Setters
+  public void setId(int id) {
+	  this.id = id;
+  }
+  
   public void setNome(String nome) {
 	  this.nome = nome;
   }
@@ -43,3 +57,4 @@ public class User {
 	  this.senha = senha;
   }
 }
+
