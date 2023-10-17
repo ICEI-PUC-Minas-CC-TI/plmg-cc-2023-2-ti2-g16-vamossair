@@ -42,7 +42,8 @@ public class UserService {
 
 			response.redirect("/profile");
 		} else {
-			response.status(404);
+			response.status(401);
+			response.redirect("/login");
 		}
 
 		return response;
@@ -55,7 +56,7 @@ public class UserService {
 
 		return response;
 	}
-
+	
 	private String criptografia(String senha) {
 		String senhaHash = "";
 		try {

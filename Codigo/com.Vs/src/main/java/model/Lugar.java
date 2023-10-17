@@ -2,6 +2,7 @@ package model;
 
 public class Lugar {
    // Atributos
+   private int id;
    private String nome;
    private String descricao;
    private String categoria;
@@ -11,8 +12,15 @@ public class Lugar {
    private int complemento;
    
    // Construtores
-   public Lugar() {
-	   this("","","","","","",0);
+   public Lugar(int id, String nome, String categoria, String descricao, String cidade, String bairro, String rua, int complemento) {
+	   setId(id);
+      setNome(nome);
+      setCategoria(categoria);
+	   setDescricao(descricao);
+	   setCidade(cidade);
+	   setBairro(bairro);
+	   setRua(rua);
+	   setComplemento(complemento);
    }
    
    public Lugar(String nome, String categoria, String descricao, String cidade, String bairro, String rua, int complemento) {
@@ -26,6 +34,10 @@ public class Lugar {
    }
    
    // Getters
+   public int getId(){
+      return this.id;
+   }
+
    public String getNome() {
 	   return this.nome;
    }
@@ -55,6 +67,10 @@ public class Lugar {
    }
    
    // Setters
+   public void setId(int id){
+      this.id = id;
+   }
+
    public void setNome(String nome) {
 	   this.nome = nome;
    }

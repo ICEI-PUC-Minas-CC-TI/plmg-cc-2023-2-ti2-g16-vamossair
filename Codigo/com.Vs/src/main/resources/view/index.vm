@@ -17,9 +17,9 @@
             <h1 class="font-bold">VS</h1>
         </div>
         <div class="hidden md:flex mr-5">
-            <a href="#" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium">Home</a>
+            <a href="/" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium">Home</a>
             <a href="#" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium">Favoritos</a>
-            <a href="#" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium"><i class="fa-solid fa-user"></i> Perfil</a>
+            <a href="/profile" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium"><i class="fa-solid fa-user"></i> Perfil</a>
         </div>
         <div class="bg-transparent p-4">
             <p class="text-black font-bold text-lg">Nível: <span id="level">1</span></p>
@@ -39,9 +39,9 @@
     <!-- NavBar Responsiva -->
     <div id="menu" class="hidden md:hidden">
         <div class="px-2 pt-2 pd-3 sm:px-3 flex flex-col">
-            <a href="#" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Home</a>
+            <a href="/" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Home</a>
             <a href="#" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Favoritos</a>
-            <a href="#" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium"><i class="fa-solid fa-user"></i> Perfil</a>
+            <a href="/profile" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium"><i class="fa-solid fa-user"></i> Perfil</a>
         </div>
     </div>
     
@@ -127,7 +127,7 @@
                     </div>
                     
                     <p class="text-white mb-4">Nosso objetivo é ajudá-lo a descobrir e explorar os locais mais incríveis da sua cidade e além.</p>
-                    <a href="#"
+                    <a href="/register"
                         class="bg-yellow-400 p-2 rounded-lg font-semibold text-white hover:text-black hover:bg-yellow-200 transition duration-300 ease-in-out">Cadastre-se</a>
                 </div>
             </div>
@@ -195,6 +195,34 @@
 
     <!-- Cards -->
     <div id="cards" class="grid grid-cols-auto md:grid-cols-4 gap-8 m-5">
+        #foreach($lugar in $lugares)
+        <div id="card" class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-2xl">
+            <div class="flex flex-col justify-between gap-3">
+                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">$lugar.getNome()</h2>
+                <div id="rate" class="flex items-center mb-2">
+                    <div class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                        <i class="fa-solid fa-star" style="color: #ffcb0c;"></i>
+                        $nota
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="mb-3 mt-3 font-normal text-gray-700 ">$lugar.getDescricao()</p>
+                <p class="mb-3 mt-3 font-normal text-gray-700 "><i class="fa-solid fa-location-dot"></i> $lugar.getRua(), $lugar.getComplemento() - $lugar.getBairro(), $lugar.getCidade()</p>
+            </div>
+            <div class="flex justify-between">
+                <button id="btn-avaliacao"
+                    class="items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <a href="#"><i class="fa-regular fa-comment"></i> Avaliações</a>
+                </button>
+                <div> 
+                    <button class="text-2xl font-bold py-2 px-4 rounded-full" >
+                    <a href="/favorite/:$lugar.getId()"><i class="fa-solid fa-bookmark" style="color: #969696;"></i></a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        #end
     </div>
 
     <!-- Foooter -->

@@ -31,7 +31,7 @@ function updateLevelText() {
 
 aumentarNivel();
 
-// Cards
+ /*// Cards
 fetch('../json/lugares.json')
     .then(response => response.json())
     .then(data => {
@@ -108,6 +108,7 @@ function criarCard(lugar) {
         `;
 }
 
+*/
 
 // Estrelas
 function colocarEstrelas(rating) {

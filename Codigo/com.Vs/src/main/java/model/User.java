@@ -6,8 +6,6 @@ public class User {
   private String nome;
   private String email;
   private String senha;
-  //private Nivel nivel;
- 
   
   // Construtores
   public User(String nome, String email, String senha) {

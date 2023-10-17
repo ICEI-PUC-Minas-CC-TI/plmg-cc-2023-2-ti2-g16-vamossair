@@ -2,6 +2,8 @@ package app;
 
 import static spark.Spark.*;
 import java.util.HashMap;
+import service.FavoritoService;
+import service.LugarService;
 import service.UserService;
 import spark.ModelAndView;
 import spark.Request;
@@ -10,7 +12,9 @@ import spark.template.velocity.VelocityTemplateEngine;
 
 public class Aplicacao {
 
-	public static UserService userService = new UserService();
+	private static UserService userService = new UserService();
+	private static LugarService lugarService = new LugarService();
+	private static FavoritoService favoritoService = new FavoritoService();
 	private static VelocityTemplateEngine engine = new VelocityTemplateEngine();
 
 	public static void main(String[] args) {
@@ -26,33 +30,52 @@ public class Aplicacao {
 		get("/profile", Aplicacao::profile, engine);
 		get("/logout", (request, response) -> userService.logout(request, response));
 
+		get("/", Aplicacao::home, engine);
+
+		post("/favorite/:id", (request, response) -> favoritoService.favoritar(request, response));
 	}
 
-	public static ModelAndView cadastro(Request req, Response response) {
+	public static ModelAndView cadastro(Request request, Response response) {
 		HashMap<String, Object> model = new HashMap<>();
 
 		return new ModelAndView(model, "view/cadastro.html");
 	}
 
-	public static ModelAndView login(Request req, Response response) {
+	public static ModelAndView login(Request request, Response response) {
 		HashMap<String, Object> model = new HashMap<>();
 
 		return new ModelAndView(model, "view/login.html");
 	}
 
-	public static ModelAndView profile(Request req, Response response) {
+	public static ModelAndView profile(Request request, Response response) {
 		HashMap<String, Object> model = new HashMap<>();
-		
-		if (req.cookies().get("session") == null) {
+
+		if (request.cookies().get("session") == null) {
 
 			response.redirect("/login");
 			return null;
 
 		} else {
 
-			int userId = Integer.parseInt(req.cookies().get("session"));
+			int userId = Integer.parseInt(request.cookies().get("session"));
 			model.put("user", userService.getUserDAO().getById(userId));
 			return new ModelAndView(model, "view/perfil.vm");
+
+		}
+	}
+
+	public static ModelAndView home(Request request, Response response) {
+		HashMap<String, Object> model = new HashMap<>();
+
+		if (request.cookies().get("session") == null) {
+
+			response.redirect("/login");
+			return null;
+
+		} else {
+			model.put("lugares", lugarService.getLugarDAO().getAll());
+			model.put("nota", 4.5);
+			return new ModelAndView(model, "view/index.vm");
 
 		}
 	}
