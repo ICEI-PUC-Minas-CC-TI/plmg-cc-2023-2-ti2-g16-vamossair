@@ -1,18 +1,19 @@
-# [Nome do projeto]
+# Vamos Sair
 
-[Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.]
+O objetivo do projeto "Vamos Sair" é criar uma plataforma que utilize algoritmos de recomendação e inteligência artificial para fornecer sugestões personalizadas de estabelecimentos interessantes para os usuários visitarem. Além disso, a plataforma oferece funcionalidades para que os usuários possam registrar e avaliar os lugares que já visitaram, bem como salvar locais que desejam conhecer futuramente.
+
 
 ## Alunos integrantes da equipe
 
-* [Nome completo do aluno 1]
-* [Nome completo do aluno 2]
-* [Nome completo do aluno 3]
-* [Nome completo do aluno 4]
+* Eduardo Araújo Valadares Silva
+* Gabriel Drumond Malta de Souza
+* Luigi Louback de Oliveira
+* Thiago Rezende Aguiar 
 
 ## Professores responsáveis
 
-* [Nome completo do professor 1]
-* [Nome completo do professor 2]
+* Marco Paulo Soares Gomes
+* Sandro Jerônimo de Almeida
 
 ## Instruções de utilização
 
