@@ -7,8 +7,17 @@ public class Avaliacao {
     private int lugar_id;
     private int nota;
     private String comentario;
+    private String user_name;
 
     // Construtores
+    public Avaliacao(int id, int user_id, int lugar_id, int nota, String comentario) {
+        setId(id);
+        setUserId(user_id);
+        setLugarId(lugar_id);
+        setNota(nota);
+        setComentario(comentario);
+    }
+
     public Avaliacao(int user_id, int lugar_id, int nota, String comentario) {
         setUserId(user_id);
         setLugarId(lugar_id);
@@ -37,6 +46,10 @@ public class Avaliacao {
         return this.comentario;
     }
 
+    public String getUserName(){
+        return this.user_name;
+    }
+
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -56,5 +69,9 @@ public class Avaliacao {
 
     public void setComentario(String comentario){
         this.comentario = comentario;
+    }
+
+     public void setUserName(String user_name){
+        this.user_name = user_name;
     }
 }

@@ -19,7 +19,7 @@ function mostrarFormAvaliacao(isFormVisible) {
 }
 
 // Estrelas
-function colocarEstrelas(rating) {
+/*function colocarEstrelas(rating) {
     let ratingInt = Math.trunc(rating);
     let strRate = '';
     for (let x = 0; x < ratingInt; x++) {
@@ -65,4 +65,4 @@ fetch('../json/lugares.json')
   });
   
 })
-.catch(error => console.error('Erro:', error));
+.catch(error => console.error('Erro:', error)); */
