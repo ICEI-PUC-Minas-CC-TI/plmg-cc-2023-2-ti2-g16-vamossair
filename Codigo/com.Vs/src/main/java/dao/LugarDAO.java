@@ -3,7 +3,6 @@ package dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Lugar;
 
 public class LugarDAO extends DAO {
@@ -32,7 +31,7 @@ public class LugarDAO extends DAO {
                 Lugar l = new Lugar(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"),
                         rs.getString("categoria"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"),
                         rs.getInt("complemento"));
-                
+
                 lugares.add(l);
             }
 
@@ -43,6 +42,30 @@ public class LugarDAO extends DAO {
         }
 
         return lugares;
+    }
+
+    public Lugar getByLugarId(int lugarId) {
+        Lugar lugar = null;
+
+        try {
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM lugar WHERE id = ?;", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            st.setInt(1, lugarId);
+        
+            ResultSet rs = st.executeQuery();
+        
+            rs.first();
+
+            lugar = new Lugar(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"),
+                    rs.getString("categoria"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"),
+                    rs.getInt("complemento"));
+        
+            st.close();
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+
+        return lugar;
     }
 
 }

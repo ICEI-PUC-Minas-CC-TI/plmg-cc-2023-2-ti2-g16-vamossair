@@ -2,6 +2,7 @@ package app;
 
 import static spark.Spark.*;
 import java.util.HashMap;
+import java.util.List;
 import service.FavoritoService;
 import service.LugarService;
 import service.UserService;
@@ -32,6 +33,7 @@ public class Aplicacao {
 
 		get("/", Aplicacao::home, engine);
 
+		get("/favorite", Aplicacao::favorite, engine);
 		post("/favorite/:id", (request, response) -> favoritoService.favoritar(request, response));
 	}
 
@@ -76,6 +78,26 @@ public class Aplicacao {
 			model.put("lugares", lugarService.getLugarDAO().getAll());
 			model.put("nota", 4.5);
 			return new ModelAndView(model, "view/index.vm");
+
+		}
+	}
+
+	public static ModelAndView favorite(Request request, Response response){
+		HashMap<String, Object> model = new HashMap<>();
+
+		if (request.cookies().get("session") == null) {
+
+			response.redirect("/login");
+			return null;
+
+		} else {
+
+			int userId = Integer.parseInt(request.cookies().get("session"));
+			List<Integer> lugaresFavoritos = favoritoService.getFavoritoDAO().getByUserId(userId);
+			
+			model.put("lugares", lugarService.getLugaresFavoritos(lugaresFavoritos));
+
+			return new ModelAndView(model, "view/favoritos.vm");
 
 		}
 	}

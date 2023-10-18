@@ -7,10 +7,14 @@ import spark.Response;
 
 public class FavoritoService {
     private FavoritoDAO favoritoDAO = new FavoritoDAO();
+
+    public FavoritoDAO getFavoritoDAO(){
+        return favoritoDAO;
+    }
     
     public Object favoritar(Request request, Response response){
         int user_id = Integer.parseInt(request.cookies().get("session"));
-        int lugar_id = Integer.parseInt(request.params(":id"));
+        Integer lugar_id = Integer.parseInt(request.params(":id"));
 
         Favorito favorito = new Favorito(user_id, lugar_id);
 

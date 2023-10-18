@@ -1,0 +1,3 @@
+#foreach($lugar in $lugares)
+<div>$lugar.getNome()</div>
+#end
