@@ -34,6 +34,28 @@ public class FavoritoDAO extends DAO{
 		return status;
 	}
 
+	public Favorito get(int user_id, int lugar_id){
+		Favorito favorito = null;
+
+		try {
+			String sql = "SELECT * FROM favoritos WHERE usuario_id ='" + user_id + "' AND lugar_id ='" + lugar_id + "';";
+
+			Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery(sql);
+			
+			if(rs.next()){            
+	         	favorito = new Favorito(rs.getInt("id"), rs.getInt("usuario_id"), rs.getInt("lugar_id"));
+	        }
+			
+			st.close();
+			
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+
+		return favorito;
+	}
+
 	public List<Integer> getByUserId(int userId){
 		List<Integer> favoritos = new ArrayList<Integer>();
 
