@@ -108,7 +108,7 @@ function criarCard(lugar) {
         `;
 }
 
-*/
+
 
 // Estrelas
 function colocarEstrelas(rating) {
@@ -157,7 +157,8 @@ function atualizarInterfaceFavoritos(index, id) {
         btn.style.color = " #969696";
     }
 
-}
+}*/
+
 // carrossel
 
   // JavaScript para controlar o slide automático

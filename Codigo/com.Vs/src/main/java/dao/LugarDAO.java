@@ -12,6 +12,24 @@ public class LugarDAO extends DAO {
         conectar();
     }
 
+    public boolean insert(Lugar lugar) {
+        boolean status = false;
+        try {
+            String sql = "INSERT INTO lugar (nome, descricao, categoria, cidade, bairro, rua, complemento) "
+                    + "VALUES ( '" + lugar.getNome() + "','" + lugar.getDescricao() + "', '" + lugar.getCategoria()
+                    + "', '" + lugar.getCategoria() + "', '" + lugar.getCidade() + "', '" + lugar.getBairro() + "', '"
+                    + lugar.getRua() + "', " + lugar.getComplemento() + ");";
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            st.executeUpdate();
+            st.close();
+            status = true;
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return status;
+    }
+
     public List<Lugar> getAll() {
         return get("");
     }
@@ -48,17 +66,18 @@ public class LugarDAO extends DAO {
         Lugar lugar = null;
 
         try {
-            PreparedStatement st = connection.prepareStatement("SELECT * FROM lugar WHERE id = ?;", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM lugar WHERE id = ?;",
+                    ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             st.setInt(1, lugarId);
-        
+
             ResultSet rs = st.executeQuery();
-        
+
             rs.first();
 
             lugar = new Lugar(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"),
                     rs.getString("categoria"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"),
                     rs.getInt("complemento"));
-        
+
             st.close();
 
         } catch (SQLException e) {
@@ -66,6 +85,37 @@ public class LugarDAO extends DAO {
         }
 
         return lugar;
+    }
+
+    public boolean update(Lugar lugar) {
+        boolean status = false;
+        try {
+            String sql = "UPDATE lugar SET nome = '" + lugar.getNome() + "', descricao = '" + lugar.getDescricao()
+                    + "', categoria = '" + lugar.getCategoria() + "', cidade = '" + lugar.getCidade() + "', bairro = '"
+                    + lugar.getBairro() + "', rua = '" + lugar.getRua() + "', complemento = " + lugar.getComplemento() +
+                    " WHERE id = " + lugar.getId();
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            st.executeUpdate();
+            st.close();
+            status = true;
+        } catch (SQLException e) {
+             System.err.println(e);
+        }
+        return status;
+    }
+
+    public boolean delete(int id) {
+        boolean status = false;
+        try {
+            Statement st = connection.createStatement();
+            st.executeUpdate("DELETE FROM lugar WHERE id = " + id);
+            st.close();
+            status = true;
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return status;
     }
 
 }

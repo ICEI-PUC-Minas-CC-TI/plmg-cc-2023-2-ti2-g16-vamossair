@@ -57,4 +57,33 @@ public class FavoritoDAO extends DAO{
 
 		return favoritos;
 	}
+
+	public boolean update(Favorito favorito) {
+		boolean status = false;
+		try {  
+			String sql = "UPDATE favoritos SET  usuario_id = " + favorito.getUserId() + ", "
+					   + "lugar_id = " + favorito.getLugarId()+ " WHERE id = " + favorito.getId();
+			PreparedStatement st = connection.prepareStatement(sql);
+			st.executeUpdate();
+			st.close();
+			status = true;
+		} catch (SQLException e) {  
+			 System.err.println(e);
+		}
+		return status;
+	}
+	
+	
+	public boolean delete(int id) {
+		boolean status = false;
+		try {  
+			Statement st = connection.createStatement();
+			st.executeUpdate("DELETE FROM favoritos WHERE id = " + id);
+			st.close();
+			status = true;
+		} catch (SQLException e) {  
+			 System.err.println(e);
+		}
+		return status;
+	}
 }
