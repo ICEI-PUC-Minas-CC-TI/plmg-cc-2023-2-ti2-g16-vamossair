@@ -78,5 +78,37 @@ public class UserDAO extends DAO {
 		
 		return user;	
 	}
+
+	public boolean update(User user) {
+		boolean status = false;
+		try {  
+			String sql = "UPDATE usuarios SET nome = '" + user.getNome() + "', "
+					   + "email = '" + user.getEmail() + "'', " 
+					   + "senha = '" + user.getSenha() +
+					    "' WHERE id = " + user.getId();
+			PreparedStatement st = connection.prepareStatement(sql);
+		
+			st.executeUpdate();
+			st.close();
+			status = true;
+		} catch (SQLException u) {  
+			throw new RuntimeException(u);
+		}
+		return status;
+	}
+	
+	
+	public boolean delete(int id) {
+		boolean status = false;
+		try {  
+			Statement st = connection.createStatement();
+			st.executeUpdate("DELETE FROM usuarios WHERE id = " + id);
+			st.close();
+			status = true;
+		} catch (SQLException u) {  
+			throw new RuntimeException(u);
+		}
+		return status;
+	}
 	
 }

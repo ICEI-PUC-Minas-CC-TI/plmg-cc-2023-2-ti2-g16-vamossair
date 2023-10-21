@@ -14,6 +14,10 @@ public class UserService {
 		return userDAO;
 	}
 
+	public User getUserById(int id){
+        return userDAO.getById(id);
+    }
+
 	public Object register(Request request, Response response) {
 		String email = request.queryParams("email");
 		String nome = request.queryParams("nome");

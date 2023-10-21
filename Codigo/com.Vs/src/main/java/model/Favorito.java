@@ -7,21 +7,27 @@ public class Favorito {
     private int lugar_id;
 
     // Construtores
+    public Favorito(int id, int user_id, int lugar_id) {
+        setId(id);
+        setUserId(user_id);
+        setLugarId(lugar_id);
+    }
+
     public Favorito(int user_id, int lugar_id) {
         setUserId(user_id);
         setLugarId(lugar_id);
     }
-  
+
     // Getters
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
-    public int getUserId(){
+    public int getUserId() {
         return this.user_id;
     }
 
-    public int getLugarId(){
+    public int getLugarId() {
         return this.lugar_id;
     }
 

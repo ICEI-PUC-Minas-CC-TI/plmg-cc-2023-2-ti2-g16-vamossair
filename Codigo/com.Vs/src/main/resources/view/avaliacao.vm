@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS</title>
+    <link rel="stylesheet" href="../style/avaliacao.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body class="bg-gray-100 p-4">
+    <button id="btn-avaliar"
+        class="items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        onclick="mostrarFormAvaliacao(true)"><i class="fa-regular fa-comment"></i> Avaliar
+    </button>
+
+    <div id="avaliacoes" class="m-10 grid grid-cols-auto lg:grid-cols-4 gap-8">
+        #foreach($avaliacao in $avaliacoes)
+        <div id="card" class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-2xl">
+            <i class="fa-solid fa-quote-left"></i>
+            <div class="flex flex-col justify-between gap-3">
+                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">$avaliacao.getUserName()</h2>
+                <div id="rate" class="flex items-center mb-2">
+                    <div class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                        <i class="fa-solid fa-star" style="color: #ffcb0c;"></i>$avaliacao.getNota()
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3 mt-3 font-normal text-gray-700 ">$avaliacao.getComentario()</p>
+                </div>
+            </div>
+        </div>
+        #end
+    </div>
+
+    <!-- Avaliação -->
+    <div id="avaliacao-form"
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white rounded-5 text-center w-500 p-20 border rounded-md shadow-md"
+        style="display: none;">
+        <h3 class="mb-20 text-2xl font-bold tracking-tight text-gray-900 ">Avaliar este item</h3>
+        <form method="post" action="/avaliar/$lugarId">
+            <div class="flex justify-center gap-3 flex-row-reverse">
+                <input class="hidden" type="radio" name="rate" id="rate-1" value="1">
+                <label class="cursor-pointer text-2xl text-gray-300" for="rate-1"><i class="fas fa-star"></i></label>
+
+                <input class="hidden" type="radio" name="rate" id="rate-2" value="2">
+                <label class="cursor-pointer text-2xl text-gray-300" for="rate-2"><i class="fas fa-star"></i></label>
+
+                <input class="hidden" type="radio" name="rate" id="rate-3" value="3">
+                <label class="cursor-pointer text-2xl text-gray-300" for="rate-3"><i class="fas fa-star"></i></label>
+
+                <input class="hidden" type="radio" name="rate" id="rate-4" value="4">
+                <label class="cursor-pointer text-2xl text-gray-300" for="rate-4"><i class="fas fa-star"></i></label>
+
+                <input class="hidden" type="radio" name="rate" id="rate-5" value="5">
+                <label class="cursor-pointer text-2xl text-gray-300" for="rate-5"><i class="fas fa-star"></i></label>
+            </div>
+
+            <br>
+            <label for="comentario" class="block mb-5 font-bold">Comentário:</label>
+            <textarea id="comentario" name="comentario" class="w-full p-10 border border-gray-400 rounded-4" rows="4"
+                required></textarea>
+            <br>
+            <button id="enviar-avaliacao"
+                class="items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enviar
+                Avaliação</button>
+        </form>
+
+    </div>
+    <script src="../scripts/avaliacao.js"></script>
+</body>
+
+</html>

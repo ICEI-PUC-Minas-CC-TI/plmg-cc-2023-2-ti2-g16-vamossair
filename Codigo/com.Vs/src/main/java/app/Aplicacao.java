@@ -3,6 +3,10 @@ package app;
 import static spark.Spark.*;
 import java.util.HashMap;
 import java.util.List;
+
+import model.Avaliacao;
+import model.User;
+import service.AvaliacaoService;
 import service.FavoritoService;
 import service.LugarService;
 import service.UserService;
@@ -17,6 +21,7 @@ public class Aplicacao {
 	private static LugarService lugarService = new LugarService();
 	private static FavoritoService favoritoService = new FavoritoService();
 	private static VelocityTemplateEngine engine = new VelocityTemplateEngine();
+	private static AvaliacaoService avaliacaoService = new AvaliacaoService();
 
 	public static void main(String[] args) {
 
@@ -35,6 +40,9 @@ public class Aplicacao {
 
 		get("/favorite", Aplicacao::favorite, engine);
 		post("/favorite/:id", (request, response) -> favoritoService.favoritar(request, response));
+
+		get("/avaliacoes/:id", Aplicacao::avaliacoes, engine);
+		post("/avaliar/:id", (request, response) -> avaliacaoService.avaliar(request, response));
 	}
 
 	public static ModelAndView cadastro(Request request, Response response) {
@@ -101,5 +109,33 @@ public class Aplicacao {
 
 		}
 	}
+
+	public static ModelAndView avaliacoes(Request request, Response response){
+		HashMap<String, Object> model = new HashMap<>();
+
+		if (request.cookies().get("session") == null) {
+
+			response.redirect("/login");
+			return null;
+
+		} else {
+
+			int lugarId = Integer.parseInt(request.params(":id"));
+
+			List<Avaliacao> avaliacoes = avaliacaoService.getAvaliacoes(lugarId);
+
+			for (Avaliacao avaliacao : avaliacoes) {
+				User usuario = userService.getUserById(avaliacao.getUserId());
+				avaliacao.setUserName(usuario.getNome());
+			}
+
+			model.put("lugarId", lugarId);
+			model.put("avaliacoes", avaliacoes);
+			
+			return new ModelAndView(model, "view/avaliacao.vm");
+
+		}
+	}
+
 
 }
