@@ -36,7 +36,7 @@
         </div>
     </nav>
 
-    <!-- NavBar Responsiva -->
+     <!-- NavBar Responsiva -->
     <div id="menu" class="hidden md:hidden">
         <div class="px-2 pt-2 pd-3 sm:px-3 flex flex-col">
             <a href="/" class="hover:bg-yellow-200 text-black px-4 py-2 rounded-md text-lg font-medium">Home</a>
