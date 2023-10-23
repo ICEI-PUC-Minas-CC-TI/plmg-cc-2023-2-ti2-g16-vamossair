@@ -38,7 +38,7 @@ public class FavoritoDAO extends DAO{
 		Favorito favorito = null;
 
 		try {
-			String sql = "SELECT * FROM favoritos WHERE usuario_id ='" + user_id + "' AND lugar_id ='" + lugar_id + "';";
+			String sql = "SELECT * FROM favoritos WHERE usuario_id = " + user_id + " AND lugar_id = " + lugar_id + " ;";
 
 			Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = st.executeQuery(sql);

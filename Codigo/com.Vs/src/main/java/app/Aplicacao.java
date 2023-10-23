@@ -3,7 +3,6 @@ package app;
 import static spark.Spark.*;
 import java.util.HashMap;
 import java.util.List;
-
 import model.Avaliacao;
 import model.User;
 import service.AvaliacaoService;
@@ -40,6 +39,7 @@ public class Aplicacao {
 
 		get("/favorite", Aplicacao::favorite, engine);
 		post("/favorite/:id", (request, response) -> favoritoService.favoritar(request, response));
+		post("/favorite/delete/:id", (request, response) -> favoritoService.remove(request, response));
 
 		get("/avaliacoes/:id", Aplicacao::avaliacoes, engine);
 		post("/avaliar/:id", (request, response) -> avaliacaoService.avaliar(request, response));
@@ -68,7 +68,7 @@ public class Aplicacao {
 		} else {
 
 			int userId = Integer.parseInt(request.cookies().get("session"));
-			model.put("user", userService.getUserDAO().getById(userId));
+			model.put("user", userService.getUserById(userId));
 			return new ModelAndView(model, "view/perfil.vm");
 
 		}
@@ -83,8 +83,8 @@ public class Aplicacao {
 			return null;
 
 		} else {
-			model.put("lugares", lugarService.getLugarDAO().getAll());
-			model.put("nota", 4.5);
+			model.put("lugares", lugarService.getAll());
+
 			return new ModelAndView(model, "view/index.vm");
 
 		}
@@ -101,7 +101,7 @@ public class Aplicacao {
 		} else {
 
 			int userId = Integer.parseInt(request.cookies().get("session"));
-			List<Integer> lugaresFavoritos = favoritoService.getFavoritoDAO().getByUserId(userId);
+			List<Integer> lugaresFavoritos = favoritoService.getByUserId(userId);
 			
 			model.put("lugares", lugarService.getLugaresFavoritos(lugaresFavoritos));
 

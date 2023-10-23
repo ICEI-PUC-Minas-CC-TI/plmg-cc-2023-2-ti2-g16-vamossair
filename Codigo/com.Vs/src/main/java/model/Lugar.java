@@ -10,6 +10,7 @@ public class Lugar {
    private String bairro;
    private String rua;
    private int complemento;
+   private double nota;
    
    // Construtores
    public Lugar(int id, String nome, String categoria, String descricao, String cidade, String bairro, String rua, int complemento) {
@@ -65,6 +66,10 @@ public class Lugar {
    public int getComplemento() {
 	   return this.complemento;
    }
+
+   public double getNota() {
+	   return this.nota;
+   }
    
    // Setters
    public void setId(int id){
@@ -97,6 +102,10 @@ public class Lugar {
    
    public void setComplemento(int complemento) {
 	   this.complemento = complemento;
+   }
+
+   public void setNota(double nota) {
+	   this.nota = nota;
    }
    
    // Outros métodos

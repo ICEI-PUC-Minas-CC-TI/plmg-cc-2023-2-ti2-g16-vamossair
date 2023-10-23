@@ -10,10 +10,6 @@ import java.math.*;
 public class UserService {
 	private UserDAO userDAO = new UserDAO();
 
-	public UserDAO getUserDAO() {
-		return userDAO;
-	}
-
 	public User getUserById(int id){
         return userDAO.getById(id);
     }
