@@ -135,7 +135,7 @@
         </section>
         </section>
         
-            <div class="mb-5 items-center :w-1/2 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="mb-5 mt-12 items-center :w-1/2 grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="flex flex-col bg-white p-6 rounded-lg shadow-md flex items-center text-center">
                     <i class="fas fa-palette text-4xl text-yellow-400"></i>
                     <div class="ml-4">
@@ -194,7 +194,7 @@
     </div>
 
     <!-- Cards -->
-    <div id="cards" class="grid grid-cols-auto md:grid-cols-4 gap-8 m-5">
+    <div id="cards" class="grid grid-cols-auto sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 m-5">
         #foreach($lugar in $lugares)
         <div id="card" class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-2xl">
             <div class="flex flex-col justify-between gap-3">
