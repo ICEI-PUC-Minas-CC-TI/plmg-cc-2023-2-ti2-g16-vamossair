@@ -43,6 +43,9 @@ public class Aplicacao {
 
 		get("/avaliacoes/:id", Aplicacao::avaliacoes, engine);
 		post("/avaliar/:id", (request, response) -> avaliacaoService.avaliar(request, response));
+
+		get("/profileEdit", Aplicacao::profileEdit, engine);
+
 	}
 
 	public static ModelAndView cadastro(Request request, Response response) {
@@ -70,6 +73,23 @@ public class Aplicacao {
 			int userId = Integer.parseInt(request.cookies().get("session"));
 			model.put("user", userService.getUserById(userId));
 			return new ModelAndView(model, "view/perfil.vm");
+
+		}
+	}
+
+	public static ModelAndView profileEdit(Request request, Response response) {
+		HashMap<String, Object> model = new HashMap<>();
+
+		if (request.cookies().get("session") == null) {
+
+			response.redirect("/login");
+			return null;
+
+		} else {
+
+			int userId = Integer.parseInt(request.cookies().get("session"));
+			model.put("user", userService.getUserById(userId));
+			return new ModelAndView(model, "view/perfilEdit.vm");
 
 		}
 	}

@@ -70,10 +70,10 @@
                 <p class ="p-2"><strong>Email:</strong> $user.getEmail()</p>
                 <p class ="p-2"><strong>Outras Informações:</strong> Outros detalhes sobre o usuário</p>
             </div>
-            <a href="/register" class="flex justify-center bg-yellow-400 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-yellow-200 transition duration-300 ease-in-out">Editar</a>
+            <a href="/profileEdit" class="flex justify-center bg-green-400 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-green-200 transition duration-300 ease-in-out">Editar</a>
 
             <a href="/register"
-                        class="flex justify-center bg-red-500 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-red-200 transition duration-300 ease-in-out">Sair</a> 
+                        class="flex justify-center bg-yellow-500 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-yellow-200 transition duration-300 ease-in-out">Sair</a> 
         </div>
     </div>
 

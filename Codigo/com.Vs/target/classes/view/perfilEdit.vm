@@ -66,14 +66,27 @@
         <div class="profile-container border-2 border-yellow-400 w-50 rounded-xl p-10 m-10 shadow-2xl">
             <div class="profile-info">
                 <h1 class="text-center text-2xl mb-3">Informações do Usuário:</h1>
-                <p class ="p-2"><strong>Nome:</strong> $user.getNome()</p>
-                <p class ="p-2"><strong>Email:</strong> $user.getEmail()</p>
-                <p class ="p-2"><strong>Outras Informações:</strong> Outros detalhes sobre o usuário</p>
+
+                <div class="flex flex-col">
+                    <div class="flex">
+                        <label class="block p-2" for="nome"><strong>Nome:</strong></label>
+                        <input class="inline p-2" type="text" placeholder="$user.getNome()" name="nome">
+                    </div>
+                    <div class="flex">
+                        <label class="block p-2" for="email"><strong>Email:</strong></label>
+                        <input class="inline p-2" type="text" placeholder="$user.getEmail()" name="email">
+                    </div>
+                </div>
+
+                <label class ="block p-2"><strong>Outras Informações:</strong> Outros detalhes sobre o usuário</label>
             </div>
-            <a href="/profileEdit" class="flex justify-center bg-green-400 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-green-200 transition duration-300 ease-in-out">Editar</a>
+            <button class="inline-flex bg-red-500 m-4 py-2 px-14 rounded-lg font-semibold text-black hover:text-white hover:bg-red-200 transition duration-300 ease-in-out">Deletar</button>
+
+            <button class="inline-flex
+             bg-green-400 m-4 py-2 px-14 rounded-lg font-semibold text-black hover:text-white hover:bg-green-200 transition duration-300 ease-in-out">Salvar</button>
 
             <a href="/register"
-                        class="flex justify-center bg-yellow-500 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-yellow-200 transition duration-300 ease-in-out">Sair</a> 
+                        class="flex justify-center bg-yellow-400 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-yellow-200 transition duration-300 ease-in-out">Sair</a> 
         </div>
     </div>
 
