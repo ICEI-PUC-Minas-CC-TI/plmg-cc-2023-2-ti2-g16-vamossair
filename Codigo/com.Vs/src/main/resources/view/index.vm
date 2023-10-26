@@ -219,7 +219,7 @@
                     <form action="/favorite/$lugar.getId()" method="post">
                        <input type="hidden" name="_method" value="post">
                         <button class="text-2xl font-bold py-2 px-4 rounded-full">
-                            <i class="fa-solid fa-heart" style="color: #da1010;"></i>
+                            <i class="fa-solid fa-heart " style="color: #da1010;" onmouseover="this.style.color='pink'" onmouseout="this.style.color='#da1010'"></i>
                         </button>
                     </form>
                 </div>
@@ -228,6 +228,10 @@
         #end
     </div>
 
+   
+    
+  
+</style>
     <!-- Foooter -->
     <footer class="bg-gray-100">
         <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
