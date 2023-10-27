@@ -51,4 +51,19 @@ public class FavoritoService {
         return response;
     }
 
+    public Object removeTodos(Request request, Response response){
+        int user_id = Integer.parseInt(request.cookies().get("session"));
+        
+        List<Integer> favoritos = favoritoDAO.getByUserId(user_id);
+
+        for (Integer favoritoId : favoritos) {
+            if (favoritoDAO.delete(favoritoId)) {
+                response.status(201);
+            } else {
+                response.status(404);
+            }
+        }
+        return response;
+    }
+
 }

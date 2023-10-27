@@ -68,23 +68,35 @@
                 <h1 class="text-center text-2xl mb-3">Informações do Usuário:</h1>
 
                 <div class="flex flex-col">
-                    <div class="flex">
-                        <label class="block p-2" for="nome"><strong>Nome:</strong></label>
-                        <input class="inline p-2" type="text" placeholder="$user.getNome()" name="nome">
-                    </div>
-                    <div class="flex">
-                        <label class="block p-2" for="email"><strong>Email:</strong></label>
-                        <input class="inline p-2" type="text" placeholder="$user.getEmail()" name="email">
+                     <form class="justify-center" action="/profileEdit/update/$user.getId()" method="post">
+                        <div class="flex">
+                            <label class="block p-2" for="nome"><strong>Nome:</strong></label>
+                            <input class="inline p-2" type="text" placeholder="$user.getNome()" name="nome">
+                        </div>
+                        <div class="flex">
+                            <label class="block p-2" for="email"><strong>Email:</strong></label>
+                            <input class="inline p-2" type="text" placeholder="$user.getEmail()" name="email">
+                        </div>
+                        <div>
+                            <label class ="block p-2"><strong>Outras Informações:</strong> Outros detalhes sobre o usuário</label>
+                        </div>
+                        <div class="flex justify-between">
+                            <button type="submit" class="flex justify-center
+                            bg-green-400 m-2 py-2 px-14 rounded-lg font-semibold text-black hover:text-white hover:bg-green-200 transition duration-300 ease-in-out">Salvar</button>
+                            </form>
+                            <div class="inline-flex"> 
+                                <!--<form action="/profileEdit/fav/delete/$lugar.getId()" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">-->
+                                <form action="/profileEdit/delete/$user.getId()" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="flex justify-center items-center bg-red-500 m-2 py-2 px-14 rounded-lg font-semibold text-black hover:text-white hover:bg-red-200 transition duration-300 ease-in-out">Deletar</button>
+                                </form>
+                                </form>
+                        </div>
                     </div>
                 </div>
-
-                <label class ="block p-2"><strong>Outras Informações:</strong> Outros detalhes sobre o usuário</label>
             </div>
-            <button class="inline-flex bg-red-500 m-4 py-2 px-14 rounded-lg font-semibold text-black hover:text-white hover:bg-red-200 transition duration-300 ease-in-out">Deletar</button>
-
-            <button class="inline-flex
-             bg-green-400 m-4 py-2 px-14 rounded-lg font-semibold text-black hover:text-white hover:bg-green-200 transition duration-300 ease-in-out">Salvar</button>
-
+        
             <a href="/register"
                         class="flex justify-center bg-yellow-400 m-4 p-2 rounded-lg font-semibold text-black hover:text-white hover:bg-yellow-200 transition duration-300 ease-in-out">Sair</a> 
         </div>

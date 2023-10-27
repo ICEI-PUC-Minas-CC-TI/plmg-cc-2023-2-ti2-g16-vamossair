@@ -46,6 +46,9 @@ public class Aplicacao {
 
 		get("/profileEdit", Aplicacao::profileEdit, engine);
 
+		post("/profileEdit/delete/:id", (request, response) -> userService.remove(request, response));
+		post("/profileEdit/update/:id", (request, response) -> userService.atualizar(request, response));
+		post("/profileEdit/favorite/delete/:id", (request, response) -> favoritoService.remove(request, response));
 	}
 
 	public static ModelAndView cadastro(Request request, Response response) {

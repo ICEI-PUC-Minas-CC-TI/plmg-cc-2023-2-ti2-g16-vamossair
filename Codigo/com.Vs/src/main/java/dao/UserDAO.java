@@ -82,20 +82,23 @@ public class UserDAO extends DAO {
 	public boolean update(User user) {
 		boolean status = false;
 		try {  
-			String sql = "UPDATE usuarios SET nome = '" + user.getNome() + "', "
-					   + "email = '" + user.getEmail() + "'', " 
-					   + "senha = '" + user.getSenha() +
-					    "' WHERE id = " + user.getId();
+			String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?";
 			PreparedStatement st = connection.prepareStatement(sql);
+	
+			st.setString(1, user.getNome());
+			st.setString(2, user.getEmail());
+			st.setString(3, user.getSenha());
+			st.setInt(4, user.getId());
 		
 			st.executeUpdate();
 			st.close();
 			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
+		} catch (SQLException e) {  
+			throw new RuntimeException(e);
 		}
 		return status;
 	}
+	
 	
 	
 	public boolean delete(int id) {

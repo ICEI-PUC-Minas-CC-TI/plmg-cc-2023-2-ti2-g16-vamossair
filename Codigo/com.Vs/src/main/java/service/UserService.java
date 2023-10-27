@@ -56,6 +56,50 @@ public class UserService {
 
 		return response;
 	}
+
+	public Object remove(Request request, Response response){
+    	int user_id = Integer.parseInt(request.cookies().get("session"));
+        
+       	User user = userDAO.getById(user_id);
+
+        if(userDAO.delete(user.getId()) == true){
+            response.status(201);
+            response.redirect("/register");
+        }else{
+             response.status(404);
+        }
+
+        return response;
+    }
+
+	public Object atualizar(Request request, Response response){
+		int user_id = Integer.parseInt(request.cookies().get("session"));
+		User user = userDAO.getById(user_id);
+	
+		//obtenha os valores dos campos nome e email que o usuário digitou no formulário
+		String novoNome = request.queryParams("nome");
+		String novoEmail = request.queryParams("email");
+	
+		//verifique se o usuário digitou um novo nome e atualize-o se necessário
+		if (novoNome != null && !novoNome.isEmpty()) {
+			user.setNome(novoNome);
+		}
+	
+		//verifique se o usuário digitou um novo email e atualize-o se necessário
+		if (novoEmail != null && !novoEmail.isEmpty()) {
+			user.setEmail(novoEmail);
+		}
+	
+		if (userDAO.update(user)) {
+			response.status(201);
+			response.redirect("/profile");
+		} else {
+			response.status(404);
+		}
+	
+		return response;
+	}
+	
 	
 	private String criptografia(String senha) {
 		String senhaHash = "";
