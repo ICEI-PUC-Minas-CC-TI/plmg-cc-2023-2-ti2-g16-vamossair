@@ -1,5 +1,7 @@
 package service;
 
+import dao.AvaliacaoDAO;
+import dao.FavoritoDAO;
 import dao.UserDAO;
 import spark.Request;
 import spark.Response;
@@ -9,6 +11,8 @@ import java.math.*;
 
 public class UserService {
 	private UserDAO userDAO = new UserDAO();
+	private FavoritoDAO favoritoDAO = new FavoritoDAO();
+	private AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
 
 	public User getUserById(int id){
         return userDAO.getById(id);
@@ -62,11 +66,11 @@ public class UserService {
         
        	User user = userDAO.getById(user_id);
 
-        if(userDAO.delete(user.getId()) == true){
+        if(favoritoDAO.deleteByUserId(user_id) && avaliacaoDAO.deleteByUserId(user_id) && userDAO.delete(user.getId())){
             response.status(201);
-            response.redirect("/register");
+            response.redirect("/logout");
         }else{
-             response.status(404);
+            response.status(404);
         }
 
         return response;

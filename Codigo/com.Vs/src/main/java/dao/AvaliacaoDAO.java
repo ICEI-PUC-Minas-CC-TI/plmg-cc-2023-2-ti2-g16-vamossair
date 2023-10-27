@@ -155,4 +155,17 @@ public class AvaliacaoDAO extends DAO {
 		}
 		return status;
 	}
+
+    public boolean deleteByUserId(int id) {
+		boolean status = false;
+		try {  
+			Statement st = connection.createStatement();
+			st.executeUpdate("DELETE FROM avaliacoes WHERE usuario_id = " + id);
+			st.close();
+			status = true;
+		} catch (SQLException e) {  
+			System.err.println(e);
+		}
+		return status;
+	}
 }
