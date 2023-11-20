@@ -6,6 +6,7 @@ public class User {
   private String nome;
   private String email;
   private String senha;
+  private Integer nivel;
   
   // Construtores
   public User(String nome, String email, String senha) {
@@ -14,11 +15,12 @@ public class User {
 	  setSenha(senha);
   }
 
-  public User(int id,String nome, String email, String senha) {
+  public User(int id,String nome, String email, String senha, Integer nivel) {
 	  setId(id);
 	  setNome(nome);
 	  setEmail(email);
 	  setSenha(senha);
+    setNivel(nivel);
   }
   
   // Getters
@@ -37,6 +39,10 @@ public class User {
   public String getSenha() {
 	  return this.senha;
   }
+
+  public Integer getNivel() {
+	  return this.nivel;
+  }
   
   // Setters
   public void setId(int id) {
@@ -53,6 +59,10 @@ public class User {
   
   public void setSenha(String senha) {
 	  this.senha = senha;
+  }
+
+  public void setNivel(Integer nivel){
+    this.nivel = nivel;
   }
 }
 

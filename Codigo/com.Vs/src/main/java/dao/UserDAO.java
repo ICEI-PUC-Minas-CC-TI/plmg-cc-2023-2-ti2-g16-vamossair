@@ -44,7 +44,7 @@ public class UserDAO extends DAO {
 			ResultSet rs = st.executeQuery(sql);
 			
 			if(rs.next()){            
-	         	user = new User(rs.getInt("id"), rs.getString("nome"),rs.getString("email"),rs.getString("senha"));
+	         	user = new User(rs.getInt("id"), rs.getString("nome"),rs.getString("email"),rs.getString("senha"), rs.getInt("nivel"));
 	        }
 			
 			st.close();
@@ -67,7 +67,7 @@ public class UserDAO extends DAO {
 			ResultSet rs = st.executeQuery(sql);
 			
 			if(rs.next()){            
-	         	user = new User(rs.getInt("id"), rs.getString("nome"),rs.getString("email"),rs.getString("senha"));
+	         	user = new User(rs.getInt("id"), rs.getString("nome"),rs.getString("email"),rs.getString("senha"), rs.getInt("nivel"));
 	        }
 			
 			st.close();
@@ -82,13 +82,14 @@ public class UserDAO extends DAO {
 	public boolean update(User user) {
 		boolean status = false;
 		try {  
-			String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE id = ?";
+			String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ?, nivel = ? WHERE id = ?";
 			PreparedStatement st = connection.prepareStatement(sql);
 	
 			st.setString(1, user.getNome());
 			st.setString(2, user.getEmail());
 			st.setString(3, user.getSenha());
-			st.setInt(4, user.getId());
+			st.setInt(4, user.getNivel());
+			st.setInt(5, user.getId());
 		
 			st.executeUpdate();
 			st.close();

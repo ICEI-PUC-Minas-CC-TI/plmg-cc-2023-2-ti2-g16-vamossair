@@ -73,7 +73,12 @@ public class Aplicacao {
 		} else {
 
 			int userId = Integer.parseInt(request.cookies().get("session"));
-			model.put("user", userService.getUserById(userId));
+			User user = userService.getUserById(userId);
+			model.put("user", user);
+			int nivel = user.getNivel()/100;
+			int xp = user.getNivel()-(nivel * 100);
+			model.put("nivel",	nivel);
+			model.put("xp",	xp);
 			return new ModelAndView(model, "view/perfil.vm");
 
 		}
@@ -90,7 +95,12 @@ public class Aplicacao {
 		} else {
 
 			int userId = Integer.parseInt(request.cookies().get("session"));
-			model.put("user", userService.getUserById(userId));
+			User user = userService.getUserById(userId);
+			model.put("user", user);
+			int nivel = user.getNivel()/100;
+			int xp = user.getNivel()-(nivel * 100);
+			model.put("nivel",	nivel);
+			model.put("xp",	xp);
 			return new ModelAndView(model, "view/perfilEdit.vm");
 
 		}
@@ -106,7 +116,12 @@ public class Aplicacao {
 
 		} else {
 			model.put("lugares", lugarService.getAll());
-
+			int userId = Integer.parseInt(request.cookies().get("session"));
+			User user = userService.getUserById(userId);
+			int nivel = user.getNivel()/100;
+			int xp = user.getNivel()-(nivel * 100);
+			model.put("nivel",	nivel);
+			model.put("xp",	xp);
 			return new ModelAndView(model, "view/index.vm");
 
 		}
@@ -126,6 +141,11 @@ public class Aplicacao {
 			List<Integer> lugaresFavoritos = favoritoService.getByUserId(userId);
 			
 			model.put("lugares", lugarService.getLugaresFavoritos(lugaresFavoritos));
+			User user = userService.getUserById(userId);
+			int nivel = user.getNivel()/100;
+			int xp = user.getNivel()-(nivel * 100);
+			model.put("nivel",	nivel);
+			model.put("xp",	xp);
 
 			return new ModelAndView(model, "view/favoritos.vm");
 

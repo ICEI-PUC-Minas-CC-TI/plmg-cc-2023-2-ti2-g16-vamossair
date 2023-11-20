@@ -22,10 +22,10 @@
             <a href="/profile" class="hover:bg-yellow-200 text-black  px-4 py-2 rounded-md text-lg font-medium"><i class="fa-solid fa-user"></i> Perfil</a>
         </div>
         <div class="bg-transparent p-4">
-            <p class="text-black font-bold text-lg">Nível: <span id="level">1</span></p>
+            <p class="text-black font-bold text-lg">Nível: <span id="level">$nivel</span></p>
 
             <div class="w-32 md:w-64 bg-gray-300 rounded-full">
-                <div id="progress-bar" class="bg-yellow-400 p-2 leading-none rounded-full" style="width: 45%"></div>
+                <div id="progress-bar" class="bg-yellow-400 p-2 leading-none rounded-full" style="width: $xp%"></div>
             </div>
         </div>
         <div class="mr-5 flex md:hidden">

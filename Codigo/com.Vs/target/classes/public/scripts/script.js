@@ -9,7 +9,7 @@ btn.addEventListener("click", () => {
 
 
 // Nivel
-let level;
+/*let level;
 let xp = 100;
 
 function aumentarNivel() {
@@ -29,7 +29,7 @@ function updateLevelText() {
     levelText.textContent = level;
 }
 
-aumentarNivel();
+aumentarNivel();*/
 
 // carrossel
 
