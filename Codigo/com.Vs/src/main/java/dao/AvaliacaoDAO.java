@@ -7,165 +7,169 @@ import model.Avaliacao;
 
 public class AvaliacaoDAO extends DAO {
 
-    public AvaliacaoDAO() {
-        super();
-        conectar();
-    }
+	public AvaliacaoDAO() {
+		super();
+		conectar();
+	}
 
-    public boolean insert(Avaliacao avaliacao) {
-        boolean status = false;
+	public boolean insert(Avaliacao avaliacao) {
+		boolean status = false;
 
-        try {
-            String sql = "INSERT INTO avaliacoes (usuario_id, lugar_id, nota, comentario) VALUES (?, ?, ?, ?)";
+		try {
+			String sql = "INSERT INTO avaliacoes (usuario_id, lugar_id, nota, comentario) VALUES (?, ?, ?, ?)";
 
-            PreparedStatement ps = connection.prepareStatement(sql);
+			PreparedStatement ps = connection.prepareStatement(sql);
 
-            ps.setInt(1, avaliacao.getUserId());
-            ps.setInt(2, avaliacao.getLugarId());
-            ps.setInt(3, avaliacao.getNota());
-            ps.setString(4, avaliacao.getComentario());
+			ps.setInt(1, avaliacao.getUserId());
+			ps.setInt(2, avaliacao.getLugarId());
+			ps.setInt(3, avaliacao.getNota());
+			ps.setString(4, avaliacao.getComentario());
 
-            ps.executeUpdate();
-            ps.close();
+			ps.executeUpdate();
+			ps.close();
 
-            status = true;
-        } catch (SQLException e) {
-            System.err.println(e);
-        }
+			status = true;
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
 
-        return status;
-    }
+		return status;
+	}
 
-    public Avaliacao get(int id) {
-        Avaliacao avaliacao = null;
+	public Avaliacao get(int id) {
+		Avaliacao avaliacao = null;
 
-        try {
+		try {
 
-            String sql = "SELECT * FROM avaliacoes WHERE id = ?";
+			String sql = "SELECT * FROM avaliacoes WHERE id = ?";
 
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, id);
 
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-               avaliacao = new Avaliacao(rs.getInt("id"),rs.getInt("usuario_id"),rs.getInt("lugar_id"),rs.getInt("nota"),rs.getString("comentario"));
-            }
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				avaliacao = new Avaliacao(rs.getInt("id"), rs.getInt("usuario_id"), rs.getInt("lugar_id"),
+						rs.getInt("nota"), rs.getString("comentario"));
+			}
 
-            ps.close();
+			ps.close();
 
-        } catch (SQLException e) {
-            System.err.println(e);
-        }
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
 
-        return avaliacao;
-    }
+		return avaliacao;
+	}
 
-    public List<Avaliacao> get() {
+	public List<Avaliacao> get() {
 		return get("");
 	}
 
-	
 	public List<Avaliacao> getOrderByID() {
-		return get("id");		
-	}
-	
-	
-	public List<Avaliacao> getOrderByUserId() {
-		return get("user_id");		
-	}
-	
-	
-	public List<Avaliacao> getOrderByLugarId() {
-		return get("lugar_id");		
+		return get("id");
 	}
 
-    private List<Avaliacao> get(String orderBy) {
+	public List<Avaliacao> getOrderByUserId() {
+		return get("user_id");
+	}
+
+	public List<Avaliacao> getOrderByLugarId() {
+		return get("lugar_id");
+	}
+
+	private List<Avaliacao> get(String orderBy) {
 		List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
-		
+
 		try {
-			Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			String sql = "SELECT * FROM avaliacoes" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
-			ResultSet rs = st.executeQuery(sql);	           
-	        while(rs.next()) {	            	
-	        	Avaliacao avaliacao = new Avaliacao(rs.getInt("id"),rs.getInt("usuario_id"),rs.getInt("lugar_id"),rs.getInt("nota"),rs.getString("comentario"));
-	            avaliacoes.add(avaliacao);
-	        }
-	        st.close();
+			PreparedStatement pst = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				Avaliacao avaliacao = new Avaliacao(rs.getInt("id"), rs.getInt("usuario_id"), rs.getInt("lugar_id"),
+						rs.getInt("nota"), rs.getString("comentario"));
+				avaliacoes.add(avaliacao);
+			}
+			pst.close();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
 		return avaliacoes;
 	}
-	
 
-    public List<Avaliacao> getByLugarId(int lugarId) {
-        List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
+	public List<Avaliacao> getByLugarId(int lugarId) {
+		List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
 
-        try {
-            Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		try {
+			String sql = "SELECT * FROM avaliacoes WHERE lugar_id = ?";
 
-            String sql = "SELECT * FROM avaliacoes WHERE lugar_id = " + lugarId + ";";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, lugarId);
 
-            ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Avaliacao avaliacao = new Avaliacao(rs.getInt("id"), rs.getInt("usuario_id"), rs.getInt("lugar_id"),
+						rs.getInt("nota"),
+						rs.getString("comentario"));
+				avaliacoes.add(avaliacao);
+			}
 
-            while (rs.next()) {
-                Avaliacao avaliacao = new Avaliacao(rs.getInt("id"), rs.getInt("usuario_id"), rs.getInt("lugar_id"),
-                        rs.getInt("nota"),
-                        rs.getString("comentario"));
-                avaliacoes.add(avaliacao);
-            }
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
 
-            st.close();
+		return avaliacoes;
+	}
 
-        } catch (SQLException e) {
-            System.err.println(e);
-        }
-
-        return avaliacoes;
-    }
-
-    public boolean update(Avaliacao avaliacao) {
+	public boolean update(Avaliacao avaliacao) {
 		boolean status = false;
-		try {  
+		try {
 			String sql = "UPDATE avaliacoes SET"
-					   + "usuario_id = " + avaliacao.getUserId() + ", " 
-					   + "lugar_id = " + avaliacao.getLugarId() + ","
-					   + "nota = " + avaliacao.getNota() + ", " 
-					   + "comentario = '" + avaliacao.getComentario() + "' WHERE id = " + avaliacao.getId();
-			PreparedStatement st =connection.prepareStatement(sql);
+					+ "usuario_id = " + avaliacao.getUserId() + ", "
+					+ "lugar_id = " + avaliacao.getLugarId() + ","
+					+ "nota = " + avaliacao.getNota() + ", "
+					+ "comentario = '" + avaliacao.getComentario() + "' WHERE id = " + avaliacao.getId();
+			PreparedStatement st = connection.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
 			status = true;
-		} catch (SQLException e) {  
-			System.err.println(e);
-		}
-		return status;
-	}
-	
-	
-	public boolean delete(int id) {
-		boolean status = false;
-		try {  
-			Statement st = connection.createStatement();
-			st.executeUpdate("DELETE FROM avaliacoes WHERE id = " + id);
-			st.close();
-			status = true;
-		} catch (SQLException e) {  
+		} catch (SQLException e) {
 			System.err.println(e);
 		}
 		return status;
 	}
 
-    public boolean deleteByUserId(int id) {
+	public boolean delete(int id) {
 		boolean status = false;
-		try {  
-			Statement st = connection.createStatement();
-			st.executeUpdate("DELETE FROM avaliacoes WHERE usuario_id = " + id);
-			st.close();
+		try {
+			String sql = "DELETE FROM avaliacoes WHERE id = ?";
+
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
 			status = true;
-		} catch (SQLException e) {  
+
+		} catch (SQLException e) {
 			System.err.println(e);
 		}
 		return status;
 	}
+
+	public boolean deleteByUserId(int id) {
+		boolean status = false;
+		try {
+			String sql = "DELETE FROM avaliacoes WHERE usuario_id = ?";
+
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			status = true;
+
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		return status;
+	}
+
 }

@@ -7,30 +7,6 @@ btn.addEventListener("click", () => {
     menu.classList.toggle("hidden");
 });
 
-
-// Nivel
-/*let level;
-let xp = 100;
-
-function aumentarNivel() {
-    level = Math.floor(xp / 100);
-    xp = xp - (level * 100);
-    updateProgressBar();
-    updateLevelText();
-}
-
-function updateProgressBar() {
-    const progressBar = document.getElementById("progress-bar");
-    progressBar.style.width = xp + "%";
-}
-
-function updateLevelText() {
-    const levelText = document.getElementById("level");
-    levelText.textContent = level;
-}
-
-aumentarNivel();*/
-
 // carrossel
 
   // JavaScript para controlar o slide automático

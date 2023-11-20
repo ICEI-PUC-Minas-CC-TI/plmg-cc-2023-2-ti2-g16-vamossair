@@ -16,14 +16,19 @@ public class LugarDAO extends DAO {
         boolean status = false;
         try {
             String sql = "INSERT INTO lugar (nome, descricao, categoria, cidade, bairro, rua, complemento) "
-                    + "VALUES ( '" + lugar.getNome() + "','" + lugar.getDescricao() + "', '" + lugar.getCategoria()
-                    + "', '" + lugar.getCategoria() + "', '" + lugar.getCidade() + "', '" + lugar.getBairro() + "', '"
-                    + lugar.getRua() + "', " + lugar.getComplemento() + ");";
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, lugar.getNome());
+            st.setString(2, lugar.getDescricao());
+            st.setString(3, lugar.getCategoria());
+            st.setString(4, lugar.getCidade());
+            st.setString(5, lugar.getBairro());
+            st.setString(6, lugar.getRua());
+            st.setInt(7, lugar.getComplemento());
 
             st.executeUpdate();
-            st.close();
             status = true;
+
         } catch (SQLException e) {
             System.err.println(e);
         }
@@ -35,25 +40,20 @@ public class LugarDAO extends DAO {
     }
 
     public List<Lugar> get(String orderBy) {
-        List<Lugar> lugares = new ArrayList<Lugar>();
+        List<Lugar> lugares = new ArrayList<>();
 
         try {
-
-            Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
             String sql = "SELECT * FROM lugar" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 
-            ResultSet rs = st.executeQuery(sql);
-
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Lugar l = new Lugar(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"),
-                        rs.getString("categoria"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"),
-                        rs.getInt("complemento"));
+                        rs.getString("categoria"), rs.getString("cidade"), rs.getString("bairro"),
+                        rs.getString("rua"), rs.getInt("complemento"));
 
                 lugares.add(l);
             }
-
-            st.close();
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -90,17 +90,22 @@ public class LugarDAO extends DAO {
     public boolean update(Lugar lugar) {
         boolean status = false;
         try {
-            String sql = "UPDATE lugar SET nome = '" + lugar.getNome() + "', descricao = '" + lugar.getDescricao()
-                    + "', categoria = '" + lugar.getCategoria() + "', cidade = '" + lugar.getCidade() + "', bairro = '"
-                    + lugar.getBairro() + "', rua = '" + lugar.getRua() + "', complemento = " + lugar.getComplemento() +
-                    " WHERE id = " + lugar.getId();
+            String sql = "UPDATE lugar SET nome = ?, descricao = ?, categoria = ?, cidade = ?, bairro = ?, rua = ?, complemento = ? WHERE id = ?";
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, lugar.getNome());
+            st.setString(2, lugar.getDescricao());
+            st.setString(3, lugar.getCategoria());
+            st.setString(4, lugar.getCidade());
+            st.setString(5, lugar.getBairro());
+            st.setString(6, lugar.getRua());
+            st.setInt(7, lugar.getComplemento());
+            st.setInt(8, lugar.getId());
 
             st.executeUpdate();
-            st.close();
             status = true;
+
         } catch (SQLException e) {
-             System.err.println(e);
+            System.err.println(e);
         }
         return status;
     }
@@ -108,10 +113,12 @@ public class LugarDAO extends DAO {
     public boolean delete(int id) {
         boolean status = false;
         try {
-            Statement st = connection.createStatement();
-            st.executeUpdate("DELETE FROM lugar WHERE id = " + id);
-            st.close();
+            String sql = "DELETE FROM lugar WHERE id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
             status = true;
+
         } catch (SQLException e) {
             System.err.println(e);
         }
