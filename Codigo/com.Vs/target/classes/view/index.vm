@@ -178,6 +178,19 @@
                 <hr class="border-b-2 border-yellow-400 w-32 rounded-full">
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="advisor">
+            <script src="https://unpkg.com/blip-chat-widget" type="text/javascript"></script>
+<script>
+    (function () {
+        window.onload = function () {
+            new BlipChat()
+                .withAppKey('dmFtb3NzYWlyMTo0ZTRiNDU4OS1iYTZkLTQyMzUtOTVmNy1hZTE0YmZkYzBiMGM=')
+                .withButton({"color":"#0096fa","icon":""})
+                .withCustomCommonUrl('https://luigi-louback-shx3j.chat.blip.ai/')
+                .build();
+        }
+    })();
+</script>
+            
             </div>
         </div>
     </div>

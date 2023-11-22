@@ -24,7 +24,7 @@ public class AvaliacaoService {
         String comentario = request.queryParams("comentario");
 
         User user = userDAO.getById(user_id);
-        user.setNivel(user.getNivel() + 10);
+        user.setNivel(user.getNivel() + 30);
         Avaliacao avalicao = new Avaliacao(user_id, lugar_id, nota, comentario);
 
         if (avaliacaoDAO.insert(avalicao) == true && userDAO.update(user) == true) {
