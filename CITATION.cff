@@ -1,31 +1,28 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: VamosSair
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Rezende Aguiar
+    given-names: Thiago
+  - family-names: Louback de Oliveira
+    given-names: Luigi
+  - family-names: Araújo Valadares Silva
+    given-names: Eduardo
+  - family-names: Drumond Malta de Souza
+    given-names: Gabriel 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Jerônimo de Almeida
+    given-names: Sandro
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Soares Gomes
+    given-names: Marco Paulo 
 keywords:
-  - 
-  - 
-repository-code: 
+  - Lugares
+  - Recomendação
+  - Sistema Inteligente
+repository-code: https://github.com/ICEI-PUC-Minas-CC-TI/plmg-cc-2023-2-ti2-g16-vamossair
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2023-12-12
